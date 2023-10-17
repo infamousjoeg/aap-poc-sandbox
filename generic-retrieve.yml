@@ -9,8 +9,6 @@
           CONJUR_AUTHN_LOGIN: "{{ lookup('env', 'CONJUR_AUTHN_LOGIN') }}"
           CONJUR_AUTHN_API_KEY: "{{ lookup('env', 'CONJUR_AUTHN_API_KEY') }}"
       no_log: true
-    - ansible.builtin.debug:
-        msg: "{{ lookup('ansible.builtin.env', 'CONJUR_APPLIANCE_URL') }}"
     - name: Fetch secret from CyberArk Conjur and print to stdout
       ansible.builtin.debug:
         msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
