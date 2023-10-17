@@ -4,6 +4,8 @@
   tasks:
     - ansible.builtin.debug:
         msg: "{{ ansible_env }}"
+      delegate_to: localhost
     - name: Fetch secret from CyberArk Conjur and print to stdout
       ansible.builtin.debug:
         msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
+      delegate_to: localhost
