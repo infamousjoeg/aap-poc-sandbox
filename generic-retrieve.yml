@@ -3,7 +3,7 @@
 
   tasks:
     - ansible.builtin.debug:
-        msg: "{{ lookup('ansible.builtin.env', 'CONJUR_APPLIANCE_URL') }}
+        msg: "{{ lookup('ansible.builtin.env', 'CONJUR_APPLIANCE_URL') }}"
     - name: Fetch secret from CyberArk Conjur and print to stdout
       ansible.builtin.debug:
         msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
