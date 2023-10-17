@@ -1,4 +1,7 @@
 ---
-- name: Fetch secret from CyberArk Conjur and print to stdout
-  debug:
-    msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
+- hosts: localhost
+
+  tasks:
+    - name: Fetch secret from CyberArk Conjur and print to stdout
+      debug:
+        msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
