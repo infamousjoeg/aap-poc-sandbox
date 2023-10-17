@@ -3,13 +3,13 @@
     src: conjur.identity.j2
     dest: /etc/conjur.identity
   delegate_to: localhost
-  no_log: yes
+  #no_log: yes
 
 - ansible.builtin.template:
     src: conjur.conf.j2
     dest: /etc/conjur.conf
   delegate_to: localhost
-  no_log: yes
+  #no_log: yes
 
 - ansible.builtin.debug:
     msg: "{{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
