@@ -2,13 +2,8 @@
 - hosts: localhost
 
   tasks:
-    - name : Setting Azure ARM credential facts
-      set_fact:
-          CONJUR_APPLIANCE_URL:  "{{ lookup('env', 'CONJUR_APPLIANCE_URL') }}"
-          CONJUR_ACCOUNT: "{{ lookup('env', 'CONJUR_ACCOUNT') }}"
-          CONJUR_AUTHN_LOGIN: "{{ lookup('env', 'CONJUR_AUTHN_LOGIN') }}"
-          CONJUR_AUTHN_API_KEY: "{{ lookup('env', 'CONJUR_AUTHN_API_KEY') }}"
-      no_log: true
+    - ansible.builtin.debug:
+        msg: "{{ ansible_env }}"
     - name: Fetch secret from CyberArk Conjur and print to stdout
       ansible.builtin.debug:
         msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
