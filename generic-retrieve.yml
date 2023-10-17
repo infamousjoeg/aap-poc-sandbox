@@ -2,8 +2,6 @@
 - hosts: localhost
 
   tasks:
-    - name: Install cyberark.conjur collection
-      ansible.builtin.shell: ansible-galaxy collection install cyberark.conjur
     - name: Fetch secret from CyberArk Conjur and print to stdout
       ansible.builtin.debug:
         msg: "The secret is: {{ lookup('cyberark.conjur.conjur_variable', 'data/vault/ConjurCloudTestSafe/conjurtestaccount/password') }}"
