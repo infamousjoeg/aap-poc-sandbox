@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  gather_facts: no
+  collections:
+    - amazon.aws
+  
+  roles:
+    - { role: "roles/aws_ec2" }

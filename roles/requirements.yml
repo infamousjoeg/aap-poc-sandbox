@@ -1,3 +1,4 @@
 ---
 collections:
   - name: cyberark.conjur
+  - name: amazon.aws

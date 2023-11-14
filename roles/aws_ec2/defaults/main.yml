@@ -1,0 +1,10 @@
+---
+ami_id: ami-05c13eab67c5d8861 # Amazon Linux 2023 64-bit (x86)
+assign_public_ip: yes
+instance_tags_name: Ansible Deployed
+instance_tags_role: ansible_deployed
+keypair: cyberark-pasaas
+region: us-east-1
+security_group: [ sg-0a0bca27d5144b7bf,sg-0dcca4efd6fdd3346,sg-020720f5f276f0ca1 ]
+subnet: subnet-043300985de6ec2d6
+type: t2.micro

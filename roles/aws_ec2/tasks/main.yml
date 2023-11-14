@@ -1,0 +1,62 @@
+---
+- name: Check if Amazon Linux
+  set_fact:
+    ami_id: "{{ amazonlinux_ami_id }}"
+    instance_tags_name: 'AmazonLinux Client'
+  when: os_platform == 'amazonlinux'
+- name: Check if Ubuntu
+  set_fact:
+    ami_id: "{{ ubuntu_ami_id }}"
+    instance_tags_name: 'Ubuntu Client'
+  when: os_platform == 'ubuntu'
+- name: Check if RHEL
+  set_fact:
+    ami_id: "{{ rhel_ami_id }}"
+    instance_tags_name: 'RHEL Client'
+  when: os_platform == 'rhel'
+
+- name: Starting AWS EC2 Instance
+  when: action == 'provision'
+  block:
+    - amazon.aws.ec2_instance:
+        image: "{{ ami_id }}"
+        instance_tags:
+          Name: "{{ instance_tags_name }}"
+          role: "{{ instance_tags_role }}"
+        instance_type: "{{ type }}"
+        key_name: "{{ keypair }}"
+        network:
+          assign_public_ip: "{{ assign_public_ip }}"
+          subnet_id: "{{ subnet }}"
+        region: "{{ region }}"
+        security_groups: "{{ security_group }}"
+        user_data: "{{ lookup('file', 'files/dpa.sh')}}"
+        state: started
+      register: instance_data
+    - builtin.debug:
+        msg: "Instance ID: {{ instance_data.instance_ids }}"
+
+- name: Terminate AWS EC2 Instance
+  when: action == 'deprovision'
+  block:
+    - amazon.aws.ec2_instance:
+        filters:
+          instance-state-name: running
+          tag:Name: "{{ instance_tags_name }}"
+          tag:role: "{{ instance_tags_role }}"
+        state: absent
+      register: terminated_instances
+    - builtin.debug:
+        msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
+
+- name: Terminate All AWS EC2 Instances
+  when: action == 'deprovision-all'
+  block:
+    - amazon.aws.ec2_instance:
+        filters:
+          instance-state-name: running
+          tag:role: "{{ instance_tags_role }}"
+        state: absent
+      register: terminated_instances
+    - builtin.debug:
+        msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
