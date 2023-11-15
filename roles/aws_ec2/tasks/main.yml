@@ -19,7 +19,8 @@
   when: action == 'provision'
   block:
     - amazon.aws.ec2_instance:
-        image: "{{ ami_id }}"
+        image:
+          id: "{{ ami_id }}"
         instance_tags:
           Name: "{{ instance_tags_name }}"
           role: "{{ instance_tags_role }}"
