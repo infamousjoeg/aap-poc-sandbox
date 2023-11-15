@@ -25,13 +25,14 @@
         key_name: "{{ keypair }}"
         network:
           assign_public_ip: "{{ assign_public_ip }}"
+          groups: "{{ security_group }}"
           subnet_id: "{{ subnet }}"
         region: "{{ region }}"
-        security_groups: "{{ security_group }}"
         tags:
           Name: "{{ instance_tags_name }}"
           role: "{{ instance_tags_role }}"
         user_data: "{{ lookup('file', 'files/dpa.sh')}}"
+        vpc_subnet_id: "{{ subnet }}"
         state: started
       register: instance_data
     - ansible.builtin.debug:
