@@ -21,9 +21,6 @@
     - amazon.aws.ec2_instance:
         image:
           id: "{{ ami_id }}"
-        instance_tags:
-          Name: "{{ instance_tags_name }}"
-          role: "{{ instance_tags_role }}"
         instance_type: "{{ type }}"
         key_name: "{{ keypair }}"
         network:
@@ -31,6 +28,9 @@
           subnet_id: "{{ subnet }}"
         region: "{{ region }}"
         security_groups: "{{ security_group }}"
+        tags:
+          Name: "{{ instance_tags_name }}"
+          role: "{{ instance_tags_role }}"
         user_data: "{{ lookup('file', 'files/dpa.sh')}}"
         state: started
       register: instance_data
