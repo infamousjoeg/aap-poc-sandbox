@@ -33,7 +33,7 @@
         user_data: "{{ lookup('file', 'files/dpa.sh')}}"
         state: started
       register: instance_data
-    - builtin.debug:
+    - ansible.builtin.debug:
         msg: "Instance ID: {{ instance_data.instance_ids }}"
 
 - name: Terminate AWS EC2 Instance
@@ -46,7 +46,7 @@
           tag:role: "{{ instance_tags_role }}"
         state: absent
       register: terminated_instances
-    - builtin.debug:
+    - ansible.builtin.debug:
         msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
 
 - name: Terminate All AWS EC2 Instances
@@ -58,5 +58,5 @@
           tag:role: "{{ instance_tags_role }}"
         state: absent
       register: terminated_instances
-    - builtin.debug:
+    - ansible.builtin.debug:
         msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
