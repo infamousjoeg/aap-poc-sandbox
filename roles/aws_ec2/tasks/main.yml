@@ -49,9 +49,6 @@
           tag:role: "{{ instance_tags_role }}"
         region: "{{ region }}"
         state: absent
-      register: terminated_instances
-    - ansible.builtin.debug:
-        msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
 
 - name: Terminate All AWS EC2 Instances
   when: action == 'deprovision-all'
@@ -62,6 +59,3 @@
           tag:role: "{{ instance_tags_role }}"
         region: "{{ region }}"
         state: absent
-      register: terminated_instances
-    - ansible.builtin.debug:
-        msg: "Terminated Instance ID(s): {{ terminated_instances.terminated_ids }}"
