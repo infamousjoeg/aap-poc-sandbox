@@ -47,6 +47,7 @@
           instance-state-name: running
           tag:Name: "{{ instance_tags_name }}"
           tag:role: "{{ instance_tags_role }}"
+        region: "{{ region }}"
         state: absent
       register: terminated_instances
     - ansible.builtin.debug:
@@ -59,6 +60,7 @@
         filters:
           instance-state-name: running
           tag:role: "{{ instance_tags_role }}"
+        region: "{{ region }}"
         state: absent
       register: terminated_instances
     - ansible.builtin.debug:
