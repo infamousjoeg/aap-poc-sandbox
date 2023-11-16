@@ -1,0 +1,4 @@
+---
+api_base_url: "{{ CYBERARK_BASE_URL }}"
+username: "{{ CYBERARK_USERNAME }}"
+password: "{{ CYBERARK_PASSWORD }}"
