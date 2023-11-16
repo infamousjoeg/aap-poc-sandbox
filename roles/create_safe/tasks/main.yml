@@ -6,10 +6,7 @@
     username: "{{ username }}"
     password: "{{ password }}"
     timeout: "{{ timeout }}"
-    use_cyberark_authentication: "{{ use_cyberark_authentication }}"
-    use_ldap_authentication: "{{ use_ldap_authentication }}"
-    use_radius_authentication: "{{ use_radius_authentication }}"
-    use_windows_authentication: "{{ use_windows_authentication }}"
+    use_cyberark_authentication: yes # _cyberark_ should be changed to your authType
     validate_certs: "{{ validate_certs }}"
     state: present
   register: cyberark_session
