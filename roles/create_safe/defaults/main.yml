@@ -5,10 +5,7 @@ concurrent_session: yes
 username: Administrator
 password: changeme
 timeout: 10
-use_cyberark_authentication: yes
-use_ldap_authentication: no
-use_radius_authentication: no
-use_windows_authentication: no
+use_cyberark_authentication: yes # Change to authentication method
 validate_certs: yes
 
 # Create Safe Defaults
