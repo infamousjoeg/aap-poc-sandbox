@@ -1,0 +1,18 @@
+fields:
+  - id: cyberark_base_url
+    type: string
+    label: PAM Base URL
+    help_text: The base URL to the PAM REST API (eg. https://cyberark.example.com)
+  - id: cyberark_api_username
+    type: string
+    label: Username
+    help_text: The username to authentication to CyberArk PAM with
+  - id: cyberark_api_password
+    type: string
+    label: Password
+    secret: true
+    help_text: The password that corresponds to the CyberArk username
+required:
+  - cyberark_base_url
+  - cyberark_api_username
+  - cyberark_api_password

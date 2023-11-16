@@ -1,0 +1,4 @@
+extra_vars:
+  CYBERARK_BASE_URL: '{{ cyberark_base_url }}'
+  CYBERARK_USERNAME: '{{ cyberark_api_username }}'
+  CYBERARK_PASSWORD: '{{ cyberark_api_password }}'
