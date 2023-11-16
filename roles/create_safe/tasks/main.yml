@@ -11,13 +11,9 @@
     state: present
   register: cyberark_session
 
-- name: Debug cyberark_session
-  ansible.builtin.debug:
-    msg: "{{ cyberark_session }}"
-
 - name: Create Safe in CyberArk
   ansible.builtin.uri:
-    url: "{{ cyberark_session.api_base_url }}/PasswordVault/api/safes"
+    url: "{{ api_base_url }}/PasswordVault/api/safes"
     method: POST
     body_format: json
     headers:
