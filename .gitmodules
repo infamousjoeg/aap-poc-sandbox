@@ -1,0 +1,3 @@
+[submodule "execution_env/cyberark-ansible-ee"]
+	path = execution_env/cyberark-ansible-ee
+	url = https://github.com/infamousjoeg/cyberark-ansible-ee.git
