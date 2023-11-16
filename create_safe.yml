@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  gather_facts: no
+  collections:
+    - cyberark.pas
+  
+  roles:
+    - { role: "roles/create_safe" }

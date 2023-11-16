@@ -1,0 +1,42 @@
+---
+- name: Authenticate to CyberArk PAM
+  cyberark.pas.cyberark_authentication:
+    api_base_url: "{{ api_base_url }}"
+    concurrentSession: "{{ concurrent_session }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
+    timeout: "{{ timeout }}"
+    use_cyberark_authentication: "{{ use_cyberark_authentication }}"
+    use_ldap_authentication: "{{ use_ldap_authentication }}"
+    use_radius_authentication: "{{ use_radius_authentication }}"
+    use_windows_authentication: "{{ use_windows_authentication }}"
+    validate_certs: "{{ validate_certs }}"
+    state: present
+  register: cyberark_session
+
+- name: Create Safe in CyberArk
+  ansible.builtin.uri:
+    url: "{{ cyberark_session.api_base_url }}/PasswordVault/api/safes"
+    method: POST
+    body_format: json
+    headers:
+      Content-Type: 'application/json'
+      Authorization: "{{ cyberark_session.token }}"
+    body: 
+      SafeName: "{{ safe_name }}"
+      Description: "{{ safe_description }}"
+      OLACEnabled: "{{ safe_olac_enabled }}"
+      ManagingCPM: "{{ safe_managing_cpm }}"
+      NumberOfVersionsRetention: "{{ safe_num_versions }}"
+      NumberOfDaysRetention: "{{ safe_num_days }}"
+      AutoPurgeEnabled: "{{ safe_autopurge_enabled }}"
+    return_content: true
+    status_code: [ 201 ]
+    validate_certs: "{{ validate_certs }}"
+  register: cyberark_safe
+
+- name: Logoff CyberArk PAM
+  cyberark.pas.cyberark_authentication:
+    cyberark_session: "{{ cyberark_session }}"
+    timeout: "{{ timeout }}"
+    state: absent

@@ -1,0 +1,21 @@
+---
+# Authentication Defaults
+api_base_url: https://cyberark.example.com
+concurrent_session: yes
+username: Administrator
+password: changeme
+timeout: 10
+use_cyberark_authentication: yes
+use_ldap_authentication: no
+use_radius_authentication: no
+use_windows_authentication: no
+validate_certs: yes
+
+# Create Safe Defaults
+safe_name: ExampleSafe
+safe_description: An example safe created by an Ansible role
+safe_olac_enabled: no # This should never be changed without first consulting CyberArk
+safe_managing_cpm: PasswordManager
+safe_num_versions: 5
+safe_num_days: null
+safe_autopurge_enabled: no # This should never be changed without first consulting CyberArk
