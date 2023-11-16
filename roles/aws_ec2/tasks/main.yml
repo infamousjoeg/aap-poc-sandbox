@@ -28,6 +28,7 @@
           groups: "{{ security_group }}"
           subnet_id: "{{ subnet }}"
         region: "{{ region }}"
+        security_groups: "{{ security_group }}"
         tags:
           Name: "{{ instance_tags_name }}"
           role: "{{ instance_tags_role }}"
